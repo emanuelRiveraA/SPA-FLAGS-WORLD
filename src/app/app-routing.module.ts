@@ -18,6 +18,10 @@ const routes: Routes = [
         component: ContactPageComponent
     },
     {
+        path: 'countries',
+        loadChildren: () => import('./countries/countries.module').then( modulo => modulo.CountriesModule)
+    },
+    {
         path: '**',
         redirectTo: ''
     }
@@ -28,7 +32,7 @@ const routes: Routes = [
         RouterModule.forRoot( routes ),
     ],
     exports: [
-        RouterModule
+        RouterModule,
     ]
 })
 export class AppRoutingModule { }
