@@ -9,6 +9,14 @@ export class CountriesService {
     private apiUrl: string = 'https://restcountries.com/v3.1';
 
     constructor(private httpClient: HttpClient) { }
+
+    searchCountryByAlphaCode( code: string ):Observable<Country[]> {//deberia de regresar un solo pais pero la API regresa un arreglo, vamos a dejarloa asi
+        const url = `${this.apiUrl}/alpha/${ code }`;        
+        return this.httpClient.get<Country[]>( url )
+            .pipe(
+                catchError( error => of([]))
+            )
+    }
     
     searchCapital( term: string):Observable<Country[]> {
         const url = `${this.apiUrl}/capital/${term}`;
