@@ -14,11 +14,12 @@ export class CountryPageComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-
+                        //params es un observable porque me estoy suscribiendo
     this.activetedRoute.params
       .subscribe( ({id}) => { //se desestructura params
         // console.log({ params });
-        
+
+        // this.searchByCountry( id );
         this.countriesService.searchCountryByAlphaCode( id )
           .subscribe( countries => {
             console.log({countries});//teoricamente me deberia regresar un solo pais pero la API asi es, regresa un arreglo
@@ -27,6 +28,14 @@ export class CountryPageComponent implements OnInit{
       })
 
   }
+
+  // searchByCountry( code: string): void {
+  //   this.countriesService.searchCountryByAlphaCode( code )
+  //         .subscribe( countries => {
+  //           console.log({countries});//teoricamente me deberia regresar un solo pais pero la API asi es, regresa un arreglo
+            
+  //         })
+  // }
 
 
 
